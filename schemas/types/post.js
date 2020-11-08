@@ -59,6 +59,16 @@ export default {
           type: 'author'
         }
       ]
+    },
+    {
+      name: 'category',
+      title: 'Categoria',
+      type: 'reference',
+      to: [
+        {
+          type: 'category'
+        }
+      ]
     }
   ]
 }
