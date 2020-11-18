@@ -6,28 +6,44 @@ export default {
     {
       name: 'slug',
       title: 'Slug',
-      type: 'slug'
+      type: 'slug',
+      options: {
+        source: 'title',
+        slugify: input => input.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-')
+      },
+      validation: Rule => Rule.required().error('O slug é obrigatório')
     },
     {
       name: 'title',
       title: 'Título',
-      type: 'string'
+      type: 'string',
+      validation: Rule => [
+        Rule.required().error('O título é obrigatório'),
+        Rule.max(60).warning('O título ideal deve conter no máximo 60 caracteres')
+      ]
     },
     {
       name: 'description',
       title: 'Descrição',
       type: 'text',
-      rows: 2
+      rows: 2,
+      validation: Rule => [
+        Rule.required().error('A descrição é obrigatória'),
+        Rule.min(50).warning('A descrição ideal deve conter no mínimo 50 caracteres'),
+        Rule.max(160).warning('A descrição ideal deve conter no máximo 160 caracteres')
+      ]
     },
     {
       name: 'date',
       title: 'Data',
-      type: 'date'
+      type: 'date',
+      validation: Rule => Rule.required().error('A data é obrigatória')
     },
     {
       name: 'coverImage',
       title: 'Imagem de Capa',
-      type: 'image'
+      type: 'image',
+      validation: Rule => Rule.required().error('A imagem de capa é obrigatória')
     },
     {
       name: 'content',
@@ -44,11 +60,13 @@ export default {
             {
               name: 'caption',
               title: 'Legenda',
-              type: 'string'
+              type: 'string',
+              validation: Rule => Rule.required().error('A legenda da imagem é obrigatória')
             }
           ]
         }
-      ]
+      ],
+      validation: Rule => Rule.required().error('O conteúdo é obrigatório')
     },
     {
       name: 'author',
