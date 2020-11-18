@@ -6,12 +6,18 @@ export default {
     {
       name: 'slug',
       title: 'Slug',
-      type: 'slug'
+      type: 'slug',
+      options: {
+        source: 'name',
+        slugify: input => input.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-')
+      },
+      validation: Rule => Rule.required().error('O slug é obrigatório')
     },
     {
       name: 'name',
       title: 'Nome',
-      type: 'string'
+      type: 'string',
+      validation: Rule => Rule.required().error('O nome é obrigatório')
     },
     {
       name: 'profilePicture',
@@ -31,12 +37,17 @@ export default {
             {
               name: 'name',
               title: 'Nome',
-              type: 'string'
+              type: 'string',
+              validation: Rule => Rule.required().error('O nome da rede social é obrigatório')
             },
             {
               name: 'url',
               title: 'URL',
-              type: 'string'
+              type: 'url',
+              validation: Rule => [
+                Rule.required().error('A URL da rede social é obrigatória'),
+                Rule.uri({ scheme: ['http', 'https'] }).error('A URL da rede social deve iniciar com "http" ou "https"')
+              ]
             }
           ]
         }
