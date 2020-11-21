@@ -38,6 +38,9 @@ export default {
               name: 'name',
               title: 'Nome',
               type: 'string',
+              options: {
+                list: ['Facebook', 'Instagram', 'WhatsApp', 'Twitter', 'YouTube', 'LinkedIn', 'Telegram']
+              },
               validation: Rule => Rule.required().error('O nome da rede social é obrigatório')
             },
             {
