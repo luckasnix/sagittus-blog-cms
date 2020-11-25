@@ -4,6 +4,18 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'locale',
+      title: 'Localidade',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Inglês', value: 'en-US' },
+          { title: 'Português', value: 'pt-BR' }
+        ]
+      },
+      validation: Rule => Rule.required().error('A localidade é obrigatória')
+    },
+    {
       name: 'organization',
       title: 'Organização',
       type: 'string',
@@ -45,12 +57,6 @@ export default {
       title: 'Logo',
       type: 'image',
       validation: Rule => Rule.required().error('A logo é obrigatória')
-    },
-    {
-      name: 'locale',
-      title: 'Localidade',
-      type: 'string',
-      validation: Rule => Rule.required().error('A localidade é obrigatória')
     },
     {
       name: 'email',
