@@ -9,8 +9,9 @@ export default {
       type: 'string',
       options: {
         list: [
+          { title: 'Português', value: 'pt-BR' },
           { title: 'Inglês', value: 'en-US' },
-          { title: 'Português', value: 'pt-BR' }
+          { title: 'Espanhol', value: 'es-ES' }
         ]
       },
       validation: Rule => Rule.required().error('A localidade é obrigatória')
